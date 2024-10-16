@@ -1,4 +1,5 @@
 import customtkinter
+from Software_Installer import MSI_Installer
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -86,6 +87,10 @@ class Fonts_List(customtkinter.CTkScrollableFrame):
         # Tool List widgets
         self.label = customtkinter.CTkLabel(self, text="Fonts")
         self.label.grid(row=0, column=0, padx=20)
+
+        MSI_File = ""
+        self.Sasson_Buttion = customtkinter.CTkButton(self, text="Test Font", command=lambda: MSI_Installer(MSI_File))
+        self.Sasson_Buttion.grid(row=4, column=0, pady=5, padx=5)
 
 # Events
 
