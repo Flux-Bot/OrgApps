@@ -1,2 +1,3 @@
 https://customtkinter.tomschimansky.com/documentation/
 pip3 install customtkinter
+pip3 install Pillow

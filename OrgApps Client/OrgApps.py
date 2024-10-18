@@ -1,5 +1,9 @@
 import customtkinter
-from Software_Installer import MSI_Installer
+from PIL import Image
+from Software_Installer import MSI_Installer, Winget_Installer
+
+# Temp Array for testing
+Installable_Apps = ["Audacity", "Steam", "Xbox", "Word", "Teams", "Excel", "Outlook", "Powerpoint", "Edge", "Chrome", "Visual studio code", "Proton Mail", "Proton Callender", "Proton Drive", "Proton VPN"]
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -52,6 +56,25 @@ class Left_Bar(customtkinter.CTkFrame):
         self.grid_rowconfigure(10, weight=1)
 
 
+# App Frame
+class App_Frame(customtkinter.CTkFrame):
+    def __init__(self, master, App_Label, **kwargs):
+        super().__init__(master, **kwargs)
+
+        self.App_Label = App_Label
+
+        self.App_Icon = customtkinter.CTkImage(Image.open("C:/Users/Flux/Documents/GitHub/OrgApps/OrgApps Client/OrgApps_Logo.ico"), size=(60, 60))
+        self.Icon_lable = customtkinter.CTkLabel(self, image=self.App_Icon, text="")
+        self.Icon_lable.grid(row=0, column=0, pady=10)
+
+        self.label = customtkinter.CTkLabel(self, text=self.App_Label)
+        self.label.grid(row=1, column=0, padx=20)
+
+
+        self.App_Buttion = customtkinter.CTkButton(self, text="Install")
+        self.App_Buttion.grid(row=2, column=0, padx=20, pady=5)
+
+
 # All Apps List
 class All_Apps_List(customtkinter.CTkScrollableFrame):
     def __init__(self, master, **kwargs):
@@ -69,6 +92,20 @@ class Apps_List(customtkinter.CTkScrollableFrame):
         # Apps List widgets
         self.label = customtkinter.CTkLabel(self, text="Apps")
         self.label.grid(row=0, column=0, padx=20)
+
+        row_count = 1
+        col_count = 0
+
+
+        for x in Installable_Apps:
+            self.App_Frame = App_Frame(master=self, App_Label=x, fg_color=("#eaeaea", "#232323"))
+            self.App_Frame.grid(row=row_count, column=col_count, pady=5, padx=5)
+
+            col_count += 1
+            if col_count >= 4:  # Adjust the number of columns as needed
+                col_count = 0
+                row_count += 1
+
 
 # Tools List
 class Tools_List(customtkinter.CTkScrollableFrame):
